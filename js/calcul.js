@@ -2,11 +2,10 @@ var POURCENTAGE_JEUNE = 0.90;
 var POURCENTAGE_AGEE = 0.70;
 var CONSTANTE_DEUXIEME_RAPPEL = 0.35;
 var CONSTANTE_ANNULATION = 0.05;
-// var CONSTANTE_MOYENNE_COUT_RDV = 0.40;
 
 var reservationTauxMoyen;
-var premierRappelPourcentage;
-var deuxiemeRappelPourcentage;
+var CONSTANTE_premier_rappel;
+var CONSTANTE_deuxieme_rappel;
 var relancePourcentage;
 
 var nombreRDVAnnuel;
@@ -46,7 +45,7 @@ function calculer() {
 
     calculPremierRappel();
     calculDeuxiemeRappel();
-    calculRelance();
+    calculAnnulation();
 
     calculReservationVolume();
     calculPremierRappelVolume();
@@ -93,7 +92,7 @@ function fillProfilJeune(){
 
     reservationTauxMoyen = j * POURCENTAGE_JEUNE+ v *POURCENTAGE_AGEE;
 
-    console.log("taux jeune :   " + profilJeune);
+    console.log("taux jeune sélectionné :   " + profilJeune);
 
     totalCentJeune();
 }
@@ -108,7 +107,7 @@ function fillProfilAgee(){
     profilAgee = v;
     reservationTauxMoyen = j * POURCENTAGE_JEUNE+ v *POURCENTAGE_AGEE;
 
-    console.log("taux agee :    " + profilAgee);
+    console.log("taux agee sélectionné :    " + profilAgee);
     totalCentAgee();
 
 
@@ -200,24 +199,24 @@ function fillTauxHoraire() {
 
 function calculPremierRappel(){
     var x = 1-reservationTauxMoyen;
-    premierRappelPourcentage = x * 0.35 + reservationTauxMoyen;
-    console.log("% Premier rappel"+premierRappelPourcentage);
-    //  return premierRappelPourcentage;
+    CONSTANTE_premier_rappel = x * 0.35 + reservationTauxMoyen;
+    console.log("% Premier rappel"+CONSTANTE_premier_rappel);
+    //  return CONSTANTE_premier_rappel;
 }
 
 function calculDeuxiemeRappel(){
-    deuxiemeRappelPourcentage = premierRappelPourcentage * CONSTANTE_DEUXIEME_RAPPEL;
-    console.log("% Deuxieme rappel"+deuxiemeRappelPourcentage);
+    CONSTANTE_deuxieme_rappel = CONSTANTE_premier_rappel * CONSTANTE_DEUXIEME_RAPPEL;
+    console.log("% Deuxieme rappel"+CONSTANTE_deuxieme_rappel);
 
-    // return deuxiemeRappelPourcentage;
+    // return CONSTANTE_deuxieme_rappel;
 }
 
-function calculRelance(){
+function calculAnnulation(){
 
     relancePourcentage = reservationTauxMoyen * CONSTANTE_ANNULATION;
 
-   // relancePourcentage = premierRappelPourcentage * CONSTANTE_ANNULATION;
-    console.log("% Relance" + relancePourcentage);
+   // relancePourcentage = CONSTANTE_premier_rappel * CONSTANTE_ANNULATION;
+    console.log("% Annulation" + relancePourcentage);
 
     // return relancePourcentage;
 }
@@ -304,7 +303,7 @@ function calculReservationTemps(){
 }
 
 function calculPremierRappelVolume(){
-    nbsPremierRappelVolume = nombreRDVAnnuel * premierRappelPourcentage;
+    nbsPremierRappelVolume = nombreRDVAnnuel * CONSTANTE_premier_rappel;
     var x = Math.round(nbsPremierRappelVolume);
 
     nbsPremierRappelVolume = x;
@@ -330,7 +329,7 @@ function calculPremierRappelTemps(){
 }
 
 function calculDeuxiemeRappelVolume(){
-    nbsDeuxiemeRappelVolume =nombreRDVAnnuel * deuxiemeRappelPourcentage;
+    nbsDeuxiemeRappelVolume =nombreRDVAnnuel * CONSTANTE_deuxieme_rappel;
 
     var x = Math.round(nbsDeuxiemeRappelVolume);
 
