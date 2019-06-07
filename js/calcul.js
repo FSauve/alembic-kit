@@ -257,7 +257,7 @@ function calculGain() {
 function calculROI(){
     var x = (gain_efficience-frais_technologiques)/frais_technologiques;
     ROI = Math.round(x);
-    document.getElementById("roi").innerHTML =""+ROI+" $";
+    document.getElementById("roi").innerHTML =""+ROI;
 }
 /*function calculEconomieAuRDV() {
 
