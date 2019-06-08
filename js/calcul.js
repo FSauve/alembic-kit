@@ -118,32 +118,41 @@ function totalCentJeune() {
         console.log("Index jeune = " + selectedIndex);
 
         switch (selectedIndex) {
-            case 8:
-                document.getElementById("agee").selectedIndex = "0";
-                break;
-            case 7:
+            case 11:
                 document.getElementById("agee").selectedIndex = "1";
                 break;
-            case 6:
+            case 10:
                 document.getElementById("agee").selectedIndex = "2";
                 break;
-            case 5:
+            case 9:
                 document.getElementById("agee").selectedIndex = "3";
                 break;
-            case 4:
+            case 8:
                 document.getElementById("agee").selectedIndex = "4";
                 break;
-            case 3:
+            case 7:
                 document.getElementById("agee").selectedIndex = "5";
                 break;
-            case 2:
+            case 6:
                 document.getElementById("agee").selectedIndex = "6";
                 break;
-            case 1:
+            case 5:
                 document.getElementById("agee").selectedIndex = "7";
                 break;
-            case 0:
+            case 4:
                 document.getElementById("agee").selectedIndex = "8";
+                break;
+            case 3:
+                document.getElementById("agee").selectedIndex = "9";
+                break;
+            case 2:
+                document.getElementById("agee").selectedIndex = "10";
+                break;
+            case 1:
+                document.getElementById("agee").selectedIndex = "11";
+                break;
+            case 0:
+                document.getElementById("agee").selectedIndex = "0";
                 break;
             default:
         }
@@ -154,32 +163,40 @@ function totalCentAgee() {
     console.log("Index agée = " + selectedIndex)
 
     switch (selectedIndex) {
-        case 8:
-            document.getElementById("jeune").selectedIndex = "0";
-            break;
-        case 7:
+        case 11:
             document.getElementById("jeune").selectedIndex = "1";
             break;
-        case 6:
+        case 10:
             document.getElementById("jeune").selectedIndex = "2";
             break;
-        case 5:
+        case 9:
             document.getElementById("jeune").selectedIndex = "3";
-            break;
-        case 4:
+        case 8:
             document.getElementById("jeune").selectedIndex = "4";
             break;
-        case 3:
+        case 7:
             document.getElementById("jeune").selectedIndex = "5";
             break;
-        case 2:
+        case 6:
             document.getElementById("jeune").selectedIndex = "6";
             break;
-        case 1:
+        case 5:
             document.getElementById("jeune").selectedIndex = "7";
             break;
-        case 0:
+        case 4:
             document.getElementById("jeune").selectedIndex = "8";
+            break;
+        case 3:
+            document.getElementById("jeune").selectedIndex = "9";
+            break;
+        case 2:
+            document.getElementById("jeune").selectedIndex = "10";
+            break;
+        case 1:
+            document.getElementById("jeune").selectedIndex = "11";
+            break;
+        case 0:
+            document.getElementById("jeune").selectedIndex = "0";
             break;
         default:
     }
@@ -442,7 +459,7 @@ function selecteurDeBanqueRDV() {
             console.log("Le prix du RDV ajusté " + appointmentPrice);
             break;
         default:
-            console.log("Aucun prix!!!!!!!");
+            console.log("Utilisateur à sélectionné CHOISIR");
     }
 }
 ///////////////////////////////////////FIN/////////////////////////////////////////

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Calcul des gains d’efficience</title>
+
+  <!-- CSS  -->
+ <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
+    <link rel = "stylesheet" href = "https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link rel = "stylesheet"  href = "https://printjs-4de6.kxcdn.com/print.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+
+    <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <script src = "https://printjs-4de6.kxcdn.com/print.min.js"></script>
+
+
+</head>
+<body style="font-family: 'Roboto';" onload="fillProfilAgee();fillProfilJeune();fillVolumeRDV();fillTauxHoraire()">
+
+<!--Barre de navigation-->
+  <nav class="white" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="https://trimoz.com" class="brand-logo"><img src="img/logo.png" alt="Retour page d'accueil" height="55" width="65"></a>
+  <!--    <ul class="right hide-on-med-and-down">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>-->
+
+      <!--<ul id="nav-mobile" class="sidenav">
+        <li><a href="#">Navbar Link</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>-->
+    </div>
+  </nav>
+<!--Fin Barre de navigation-->
+
+
+<div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <br><br>
+      <h1 class="header center" style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
+  <!--    <div class="row center">
+        <h5 class="header col s12 light">Trimoz technologies vous présente un outil capable d'estimer votre ROI</h5>
+      </div>-->
+      <br><br>
+
+    </div>
+  </div>
+
+<div class="container" id="tout">
+  <div class="section">
+      <h4>Mon programme de services</h4>
+
+      <div class="row" style="background: lightgrey;border-radius: 10px;max-width: 840px;">
+          <table class="center" style="margin-left: 40px;max-width: 800px;">
+              <thead>
+              <tr>
+                  <th class=""><h3 style="font-weight: bold;">Attributs de profil</h3></th>
+                  <th class="centerTextinTable"><h3 style="font-weight: bold;">Mesures</h3></th>
+              </tr></thead>
+
+              <tbody>
+              <tr>
+                  <td><h5>Programme de services</h5></td>
+                  <td class="centerTextinTable">
+                      <select  class="browser-default" id="programme_service">
+                          <option value="Grippe">Grippe</option>
+                          <option value="Clinique d'hiver">Clinique d'hiver</option>
+                          <option value="Prélèvement">Prélèvement</option>
+                          <option value="Clinique jeunesse">Clinique jeunesse</option>
+                          <option value="Vaccin enfant" selected>Vaccin enfant</option>
+                          <option value="Santé mentale">Santé mentale</option>
+                      </select>
+                  </td>
+                  <tr><td><h5>Volume de rendez-vous annuel</h5></td>
+                  <td><select  class="browser-default" id="volume_rdv_annuel" oninput="fillVolumeRDV()">
+               <!--       <option value="500">500</option>
+                      <option value="1000">1000</option>
+                      <option value="2500">2500</option>-->
+                      <option value="5000">5000</option>
+                      <option value="10000" selected>10 000</option>
+                      <option value="20000">20000</option>
+                      <option value="40000">40000</option>
+                      <option value="60000">60000</option>
+                      <option value="80000">80000</option>
+                      <option value="100000">100000</option>
+                  </select></td></tr>
+              <tr>
+                  <td><h5>Profil de la clientèle</h5></td>
+                  <td><h5>Jeunes :</h5></td>
+
+              <tr>
+                  <td></td>
+                  <td>
+                      <select class="browser-default" id="jeune" oninput="fillProfilJeune();">
+                          <option value="0.90">90%</option>
+                          <option value="0.80">80%</option>
+                          <option value="0.70" selected="selected">70%</option>
+                          <option value="0.60">60%</option>
+                          <option value="0.50">50%</option>
+                          <option value="0.40">40%</option>
+                          <option value="0.30">30%</option>
+                          <option value="0.20">20%</option>
+                          <option value="0.10">10%</option>
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td><h5>Âgée (55 et plus) :</h5></td>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td>
+                      <select class="browser-default" id="agee" oninput="fillProfilAgee();">
+                          <option value="0.90">90%</option>
+                          <option value="0.80">80%</option>
+                          <option value="0.70">70%</option>
+                          <option value="0.60">60%</option>
+                          <option value="0.50">50%</option>
+                          <option value="0.40">40%</option>
+                          <option value="0.30" selected="selected">30%</option>
+                          <option value="0.20">20%</option>
+                          <option value="0.10">10%</option>
+                      </select>
+                  </td>
+              </tr>
+              </tbody>
+          </table>
+      </div>
+      <!--Fin row inputs-->
+
+      <h4 style="margin-top: 35px">Mes activités liées à la prise de rendez-vous</h4>
+
+      <div class="row" style="background: lightgrey;border-radius: 10px;max-width: 840px;">
+
+      <table class="center" style="margin-left: 40px;margin-bottom: 40px;max-width: 800px;">
+        <thead>
+        <tr>
+          <th class="centerTextinTable"><h4 style="font-weight: bold;">Communications</h4></th>
+            <th class="centerTextinTable"><h4 style="font-weight: bold;">Durée (min.)</h4></th>
+        </tr></thead>
+
+          <tbody><tr>
+          <td><h5>Durée moyenne d’une réservation de rendez-vous par téléphone</h5></td>
+          <td>
+            <select class="browser-default" id="combo_temps_reservation">
+              <option value="4">4 minutes</option>
+              <option value="5" selected="selected">5 minutes</option>
+              <option value="6">6 minutes</option>
+              <option value="7">7 minutes</option>
+              <option value="8">8 minutes</option>
+              <option value="9">9 minutes</option>
+              <option value="10">10 minutes</option>
+            </select>
+          </td>
+          <!--<td class="centerTextinTable" style="text-align: center" id="volume_reservation"></td>
+          <td class="centerTextinTable" style="text-align: center" id="temps_reservation"></td>-->
+        </tr>
+        <tr>
+            <td><h5>Durée moyenne d’un premier rappel de rendez-vous par téléphone</h5></td>
+          <td>
+            <select class="browser-default" id="combo_temps_premier_rappel">
+              <option value="4">4 minutes</option>
+              <option value="5" selected="selected">5 minutes</option>
+              <option value="6">6 minutes</option>
+              <option value="7">7 minutes</option>
+              <option value="8">8 minutes</option>
+              <option value="9">9 minutes</option>
+              <option value="10">10 minutes</option>
+            </select>
+          </td>
+         <!-- <td class="centerTextinTable" style="text-align: center" id="volume_premier"></td>
+          <td class="centerTextinTable" style="text-align: center" id="temps_premier"></td>-->
+        </tr>
+        <tr>
+            <td><h5>Durée moyenne d’un second rappel de rendez-vous par téléphone</h5></td>
+          <td class="centerTextinTable">
+            <select class="browser-default" id="combo_temps_deuxieme_rappel">
+              <option value="4">4 minutes</option>
+              <option value="5" selected="selected">5 minutes</option>
+              <option value="6">6 minutes</option>
+              <option value="7">7 minutes</option>
+              <option value="8">8 minutes</option>
+              <option value="9">9 minutes</option>
+              <option value="10">10 minutes</option>
+            </select>
+          </td>
+        <!--  <td class="centerTextinTable" style="text-align: center" id="volume_deuxieme"></td>
+          <td class="centerTextinTable" style="text-align: center" id="temps_deuxieme"></td>-->
+        </tr>
+        <tr>
+          <td><h5>Durée moyenne d’une annulation téléphonique</h5></td>
+          <td class="centerTextinTable">
+            <select class="browser-default" id="combo_temps_relance">
+              <option value="4">4 minutes</option>
+              <option value="5" selected="selected">5 minutes</option>
+              <option value="6">6 minutes</option>
+              <option value="7">7 minutes</option>
+              <option value="8">8 minutes</option>
+              <option value="9">9 minutes</option>
+              <option value="10">10 minutes</option>
+            </select>
+          </td>
+        <!--  <td  class="centerTextinTable" style="text-align: center"id="volume_relance"></td>
+          <td class="centerTextinTable" style="text-align: center" id="temps_relance"></td>-->
+        </tr>
+          <tr>
+              <td><h5>Taux horaire du service administratif (RH senior incluant frais généraux)</h5></td>
+              <td class="centerTextinTable">
+                  <select class="browser-default" id="taux_horaire" oninput="fillTauxHoraire()">
+                      <option value="15">15 $/h</option>
+                      <option value="16">16 $/h</option>
+                      <option value="17">17 $/h</option>
+                      <option value="18">18 $/h</option>
+                      <option value="19">19 $/h</option>
+                      <option value="20">20 $/h</option>
+                      <option value="21">21 $/h</option>
+                      <option value="22">22 $/h</option>
+                      <option value="23">23 $/h</option>
+                      <option value="24">24 $/h</option>
+                      <option value="25">25 $/h</option>
+                      <option value="26">26 $/h</option>
+                      <option value="27">26 $/h</option>
+                      <option value="28">26 $/h</option>
+                      <option value="29">26 $/h</option>
+                      <option value="30" selected="selected">30 $/h</option>
+                      <option value="31">31 $/h</option>
+                      <option value="32">32 $/h</option>
+                      <option value="33">33 $/h</option>
+                      <option value="34">35 $/h</option>
+                      <option value="36">37 $/h</option>
+                      <option value="32">38 $/h</option>
+                      <option value="39">39 $/h</option>
+                      <option value="40">40 $/h</option>
+                  </select>
+              </td>
+              <!--  <td  class="centerTextinTable" style="text-align: center"id="volume_relance"></td>
+                <td class="centerTextinTable" style="text-align: center" id="temps_relance"></td>-->
+          </tr>
+          </tbody>
+      </table>
+
+    </div>
+      <a class="waves-effect waves-light btn-large" style="display: flex; justify-content: center; margin-bottom: 40px; background-color:#4FBBF9;max-width: 840px;"
+         onclick="autoFillPreselected();calculer();calculerTotaux();">
+          <i class="material-icons right">attach_money</i>Calculer</a>
+
+      <h4 style="margin-top: 35px">Gains d'efficience</h4>
+
+      <div class="row" style="background: lightblue;border-radius: 10px;max-width: 840px;">
+
+      <table class="center" class="center" style="margin-left: 40px;max-width: 800px;">
+          <thead>
+          <tr>
+              <th class="centerTextinTable"><h4 style="font-weight: bold;">Gains et dépenses</h4></th>
+              <th class="centerTextinTable"><h4 style="font-weight: bold;">Résultats</h4></th>
+          </tr></thead>
+
+          <tbody>
+          <tr>
+              <td><h5>Nombre d’heures récupérées</h5></td>
+              <td class="centerTextinTable"><h5 style="font-weight: bold;" id="heures_recuperees"></h5></td>
+          </tr>
+
+          <tr>
+              <td><h5>Valeur des gains d’efficience</h5></td>
+              <td class="centerTextinTable"><h5 style="font-weight: bold;" id="gain_efficience"></h5></td>
+          </tr>
+
+          <tr>
+              <td><h5>Frais technologiques</h5></td>
+              <td class="centerTextinTable"><h5 style="font-weight: bold; " id="frais_technologiques"></h5></td>
+          </tr>
+
+          <tr>
+              <td><h5>Retour sur l’investissement (ROI)</h5></td>
+              <td class="centerTextinTable"><h5 style="font-weight: bold;" id="roi"></h5></td>
+          </tr>
+          </tbody>
+      </table>
+      </div>
+  </divz>
+      
+
+  <!--<footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+      Tout droits réservés : <a class="blue-text text-lighten-3" href="https://trimoz.com">Trimoz technologies 2019</a>
+      </div>
+    </div>
+  </footer>-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="js/materialize.js"></script>
+        <script src="js/init.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+        <!--SOURCE = http://numeraljs.com/-->
+        <script src="js/calcul.js"></script>
+    </body>
+</html>
