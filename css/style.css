@@ -18,8 +18,8 @@ div.centerCard{
     margin-right: auto
 }
 .center {
-    margin: auto;
-    width: 60%;
+    margin: 2%;
+    /*width: 60%;*/
     padding: 10px;
     border-radius: 10px
 }

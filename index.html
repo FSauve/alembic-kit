@@ -44,16 +44,16 @@
 
 <h1 class="header center" style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
 
-<h2 class="">Mon programme de service</h2>
-<div class="row s12 m8 l6 center" style="background-color: lightblue;">
+<h3 class="">Mon programme de service</h3>
+<div class="row s12 m12 l12 center" style="background-color: lightblue;">
 
-    <div class="row s12 m8 l6">
+    <div class="row s12 m12 l12">
 
-        <div class="col s12 m4 l3">
-            <h5>Programme de services</h5>
+        <div class="col s12 m6 l6">
+            <h5 style="text-align: left">Programme de services</h5>
         </div>
 
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select  class="browser-default" id="programme_service">
                 <option selected="selected">Choisir</option>
                 <option value="Grippe">Grippe</option>
@@ -65,13 +65,13 @@
         </div>
     </div>
 
-    <div class="row s12 m8 l8">
+    <div class="row s12 m12 l12">
 
-        <div class="col s12 m4 l3">
-            <h5>Volume de rendez-vous annuel</h5>
+        <div class="col s12 m6 l6">
+            <h5 style="text-align: left">Volume de rendez-vous annuel</h5>
         </div>
 
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select  class="browser-default" id="volume_rdv_annuel" oninput="fillVolumeRDV()">
                 <option selected="selected">Choisir</option>
                 <option value="5000">5 000</option>
@@ -85,12 +85,12 @@
         </div>
     </div>
 
-    <div class="row s12 m8 l8">
-        <div class="col s12 m4 l3">
-            <h5>Profil de la clientèle jeune</h5>
+    <div class="row s12 m12 l12">
+        <div class="col s12 m6 l6">
+            <h5 style="text-align: left">Profil de la clientèle jeune</h5>
         </div>
 
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select class="browser-default" id="jeune" oninput="fillProfilJeune();">
                 <option selected="selected">Choisir</option>
                 <option value="1">100%</option>
@@ -110,11 +110,11 @@
         </div>
     </div>
 
-    <div class="row s12 m8 l8">
-        <div class="col s12 m4 l3">
-            <h5>Profil de la clientèle agee</h5>
+    <div class="row s12 m12 l12">
+        <div class="col s12 m3 l6">
+            <h5 style="text-align: left">Profil de la clientèle agee</h5>
         </div>
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select class="browser-default" id="agee" oninput="fillProfilAgee();">
                 <option selected="selected">Choisir</option>
                 <option value="1">100%</option>
@@ -133,16 +133,16 @@
     </div>
 </div>
 
-<h2>Mes activités liées à la prise de rendez-vous</h2>
+<h3>Mes activités liées à la prise de rendez-vous</h3>
 <div class="row s12 m8 l6 center" style="background-color: lightgrey;margin-top: 40px">
 
-    <div class="row s12 m8 l6">
+    <div class="row s12 m12 l12">
 
-        <div class="col s12 m4 l3">
-            <h5>Durée moyenne d’une réservation de rendez-vous par téléphone</h5>
+        <div class="col s12 m6 l6">
+            <h5 style="text-align: left">Durée moyenne d’une réservation</h5>
         </div>
 
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select class="browser-default" id="combo_temps_reservation">
                 <option value="0">0 minutes</option>
                 <option value="1">1 minutes</option>
@@ -159,13 +159,13 @@
         </div>
     </div>
 
-    <div class="row s12 m8 l8">
+    <div class="row s12 m12 l12">
 
-        <div class="col s12 m4 l3">
-            <h5>Durée moyenne d’un premier rappel de rendez-vous par téléphone</h5>
+        <div class="col s12 m6 l6">
+            <h5 style="text-align: left">Durée moyenne d’un premier rappel</h5>
         </div>
 
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select class="browser-default" id="combo_temps_premier_rappel">
                 <option value="0">0 minutes</option>
                 <option value="1">1 minutes</option>
@@ -182,12 +182,12 @@
         </div>
     </div>
 
-    <div class="row s12 m8 l8">
-        <div class="col s12 m4 l3">
-            <h5>Durée moyenne d’un second rappel de rendez-vous par téléphone</h5>
+    <div class="row s12 m12 l12">
+        <div class="col s12 m6 l6">
+            <h5 style="text-align: left">Durée moyenne d’un second rappel</h5>
         </div>
 
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select class="browser-default" id="combo_temps_deuxieme_rappel">
                 <option value="0">0 minutes</option>
                 <option value="1">1 minutes</option>
@@ -204,11 +204,11 @@
         </div>
     </div>
 
-    <div class="row s12 m8 l8">
-        <div class="col s12 m4 l3">
-            <h5>Durée moyenne d’une annulation téléphonique</h5>
+    <div class="row s12 m12 l12">
+        <div class="col s12 m6 l6">
+            <h5 style="text-align: left">Durée moyenne d’une annulation</h5>
         </div>
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select class="browser-default" id="combo_temps_relance">
                 <option value="0">0 minutes</option>
                 <option value="1">1 minutes</option>
@@ -224,11 +224,11 @@
             </select>
         </div>
     </div>
-    <div class="row s12 m8 l8">
-        <div class="col s12 m4 l3">
-            <h5>Taux horaire du service administratif (RH senior incluant frais généraux)</h5>
+    <div class="row s12 m12 l12">
+        <div class="col s12 m6 l6">
+            <h5 style="text-align: left">Taux horaire agent administratif</h5>
         </div>
-        <div class="col s12 m4 l3">
+        <div class="col s12 m6 l6">
             <select class="browser-default" id="taux_horaire" oninput="fillTauxHoraire()">
                 <option value="15">15 $/h</option>
                 <option value="16">16 $/h</option>
@@ -259,55 +259,53 @@
     </div>
 </div>
 
- <a class="waves-effect waves-light btn-large" style="display: flex;
- justify-content: center; margin-bottom: 40px; background-color:#4FBBF9;max-width: 840px;"
-    onclick="autoFillPreselected();calculer();calculerTotaux();">
-     <i class="material-icons right">attach_money</i>Calculer</a>
-
-                    <h4 style="margin-top: 35px">Gains d'efficience</h4>
+<div class="row s10 m2 l2 center">
+<a class="waves-effect waves-light btn-large" style="background-color:#4FBBF9;margin-bottom: 40px;" onclick="autoFillPreselected();calculer();calculerTotaux();"><i class="material-icons right">attach_money</i>Calculer</a>
+</div>
+                    <h3 style="margin-top: 35px">Gains d'efficience</h3>
 
 <div class="row s12 m8 l6 center" style="background-color: lightblue;">
 
-                        <div class="row s12 m8 l6">
+                        <div class="row s12 m12 l12">
 
-                            <div class="col s12 m4 l3">
-                                <h5>Nombre d’heures récupérées</h5>
+                            <div class="col s12 m6 l6">
+                                <h5 style="text-align: left">Nombre d’heures récupérées</h5>
                             </div>
 
-                            <div class="col s12 m4 l3">
+                            <div class="col s12 m6 l6">
                                 <h5 style="font-weight: bold;" id="heures_recuperees"></h5>
                             </div>
                         </div>
 
-                        <div class="row s12 m8 l8">
+                        <div class="row s12 m12 l12">
 
-                            <div class="col s12 m4 l3">
-                                <h5>Valeur des gains d’efficience</h5>
+                            <div class="col s12 m6 l6">
+                                <h5 style="text-align: left">Valeur des gains d’efficience</h5>
                             </div>
 
-                            <div class="col s12 m4 l3">
+                            <div class="col s12 m6 l6">
                                 <h5 style="font-weight: bold;" id="gain_efficience"></h5>
                             </div>
                         </div>
 
-                            <div class="row s12 m8 l8">
+                            <div class="row s12 m12 l12">
 
-                                <div class="col s12 m4 l3">
-                                    <h5>Frais technologiques</h5>
+                                <div class="col s12 m6 l6">
+                                    <h5 style="text-align: left">Frais technologiques</h5>
                                 </div>
 
-                                <div class="col s12 m4 l3">
+                                <div class="col s12 m6 l6">
                                     <h5 style="font-weight: bold; " id="frais_technologiques"></h5>
                                 </div>
                             </div>
 
-                                <div class="row s12 m8 l8">
+                                <div class="row s12 m12 l12">
 
-                                    <div class="col s12 m4 l3">
-                                        <h5>Retour sur l’investissement (ROI)</h5>
+                                    <div class="col s12 m6 l6">
+                                        <h5 style="text-align: left">Retour sur l’investissement (ROI)</h5>
                                     </div>
 
-                                    <div class="col s12 m4 l3">
+                                    <div class="col s12 m6 l6">
                                         <h5 style="font-weight: bold;" id="roi"></h5>
                                     </div>
                                 </div>
