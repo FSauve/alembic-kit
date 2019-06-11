@@ -261,6 +261,7 @@ function calculFraisUtilisation() {
     frais_technologiques = volumeAnnuel*appointmentPrice;
     //x =Math.round(x);
     //var xformated = numeral(x).format('0,0');
+    frais_technologiques = frais_technologiques.toFixed(2);
     console.log("Frais d'utilisation de la platforme = " + frais_technologiques);
     document.getElementById("frais_utilisation_plateforme").innerHTML =""+frais_technologiques+" $";
 }
@@ -271,6 +272,7 @@ function calculGain() {
 
    // document.getElementById("valeurMonetaireGain").innerHTML =""+x;
     //var xformated = numeral(valeurMonetaireGain).format('0,0');
+    valeurMonetaireGain = valeurMonetaireGain.toFixed(2);
     document.getElementById("valeur_monetaire_gain").innerHTML =""+valeurMonetaireGain+" $";
 }
 
@@ -279,6 +281,8 @@ function calculROI(){
     //var xformated = numeral(valeurMonetaireGain).format('0,0');
 
    // ROI = Math.round(x);
+
+    ROI = ROI.toFixed(2);
     document.getElementById("roi").innerHTML =""+ROI;
 }
 function calculEconomieAuRDV() {
