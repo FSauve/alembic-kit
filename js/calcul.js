@@ -1,17 +1,37 @@
-var POURCENTAGE_JEUNE = 0.90;
-var POURCENTAGE_AGEE = 0.70;
-var CONSTANTE_DEUXIEME_RAPPEL = 0.35;
-var CONSTANTE_ANNULATION = 0.05;
+var TAUX_RESERVATION_JEUNE = 0.90;
+var TAUX_RESERVATION_AGEE = 0.70;
+var TAUX_ANNULATION_MODIFICATION =0.10;
 
-var reservationTauxMoyen;
-var CONSTANTE_premier_rappel;
-var CONSTANTE_deuxieme_rappel;
-var relancePourcentage;
+var TAUX_DEUXIEME_RAPPEL = 0.35;
+var TAUX_RAPPEL_ADMINISTRATIF = 0.35;
+//var TAUX_RELANCE = 1;
 
-var nombreRDVAnnuel;
+var INDICATEUR_RESERVATION;
+var INDICATEUR_ANNULATION_MODIFICATION;
+var INDICATEUR_RAPPEL;
+var INDICATEUR_RELANCE;
+
+var appointmentPrice;
+
+var CONSTANTE_BANQUE_5000 = 0.53;
+var CONSTANTE_BANQUE_10000 = 0.48;
+var CONSTANTE_BANQUE_20000 = 0.43;
+var CONSTANTE_BANQUE_30000 = 0.39;
+var CONSTANTE_BANQUE_40000 = 0.37;
+var CONSTANTE_BANQUE_50000 = 0.35;
+var CONSTANTE_BANQUE_60000 = 0.34;
+var CONSTANTE_BANQUE_70000 = 0.32;
+var CONSTANTE_BANQUE_80000 = 0.31;
+var CONSTANTE_BANQUE_90000 = 0.30;
+var CONSTANTE_BANQUE_100000 = 0.29;
+
+var volumeAnnuel;
 var profilJeune;
 var profilAgee;
 var tauxHoraire;
+
+var nbsVolumeRappels;
+var nbsAnnulationModificationVolume;
 
 var nbsReservationVolume;
 var nbsPremierRappelVolume;
@@ -19,16 +39,15 @@ var nbsDeuxiemeRappelVolume;
 var nbsRelanceVolume;
 
 var nbsReservationTemps;
+var nbsAnnulationModificationTemps;
 var nbsPremierRappelTemps;
 var nbsDeuxiemeRappelTemps;
-var nbsRelanceVolumeTemps;
+var nbsRelanceTemps;
+var nbsRappelsTemps;
 
-var total_heures_recuperees;
+var totalHeuresEnCommunicationRecuperees;
 var frais_technologiques;
-var totalUtilisation;
-var gain_efficience;
-
-var appointmentPrice;
+var valeurMonetaireGain;
 
 ///////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////ACTIONS GROUPÉES////////////////////////////////////
@@ -42,26 +61,20 @@ function autoFillPreselected() {
 }
 
 function calculer() {
+    calculIndicateurReservation();
+    calculIndicateurAnnulationEtModification();
+    calculIndicateurRappel();
+    calculIndicateurRelance();
 
-    calculPremierRappel();
-    calculDeuxiemeRappel();
-    calculAnnulation();
-
-    calculReservationVolume();
-    calculPremierRappelVolume();
-    calculDeuxiemeRappelVolume();
-    calculRelancelVolume();
-
-    calculReservationTemps();
-    calculPremierRappelTemps();
-    calculDeuxiemeRappelTemps();
-    calculRelanceTemps();
+    //calculDesVolumes();
+    calculDesDurees();
 }
 
 function calculerTotaux() {
-    calculTotalHeures();
+    calculGainTempsAdministratif();
     calculFraisUtilisation();
     calculGain();
+    calculEconomieAuRDV();
     calculROI();
 }
 
@@ -76,11 +89,15 @@ function calculerTotaux() {
 ///////////////////////////////////////////////////////////////////////////////////
 function fillVolumeRDV() {
     var e = document.getElementById("volume_rdv_annuel");
-    nombreRDVAnnuel = e.options[e.selectedIndex].value;
-    console.log("Volume de rendez-vous :    " + nombreRDVAnnuel);
+    volumeAnnuel = e.options[e.selectedIndex].value;
+
+    console.log("Volume [ENREGISTRÉ]= " + volumeAnnuel);
     selecteurDeBanqueRDV();
 }
+
 function fillProfilJeune(){
+
+    totalCentJeune();
 
     var e = document.getElementById("jeune");
     var j = e.options[e.selectedIndex].value;
@@ -90,13 +107,12 @@ function fillProfilJeune(){
 
     profilJeune = j;
 
-    reservationTauxMoyen = j * POURCENTAGE_JEUNE+ v *POURCENTAGE_AGEE;
-
-    console.log("taux jeune sélectionné :   " + profilJeune);
-
-    totalCentJeune();
+    INDICATEUR_RESERVATION = j * TAUX_RESERVATION_JEUNE+ v *TAUX_RESERVATION_AGEE;
+    console.log("Profil jeune  [ENREGISTRÉ]= " + profilJeune);
 }
 function fillProfilAgee(){
+
+    totalCentAgee();
 
     var e = document.getElementById("jeune");
     var j = e.options[e.selectedIndex].value;
@@ -105,17 +121,18 @@ function fillProfilAgee(){
     var v = e.options[e.selectedIndex].value ;
 
     profilAgee = v;
-    reservationTauxMoyen = j * POURCENTAGE_JEUNE+ v *POURCENTAGE_AGEE;
 
-    console.log("taux agee sélectionné :    " + profilAgee);
-    totalCentAgee();
+    INDICATEUR_RESERVATION = j * TAUX_RESERVATION_JEUNE+ v *TAUX_RESERVATION_AGEE;
+    console.log("Profil agé  [ENREGISTRÉ]= " + profilAgee);
+}
 
-
+function fillTauxHoraire() {
+    tauxHoraire = document.getElementById("taux_horaire").value;
+    console.log("taux horaire [ENREGISTRÉ]= " + tauxHoraire);
 }
 
 function totalCentJeune() {
         var selectedIndex = document.getElementById("jeune").selectedIndex;
-        console.log("Index jeune = " + selectedIndex);
 
         switch (selectedIndex) {
             case 11:
@@ -160,7 +177,6 @@ function totalCentJeune() {
 
 function totalCentAgee() {
     var selectedIndex = document.getElementById("agee").selectedIndex;
-    console.log("Index agée = " + selectedIndex)
 
     switch (selectedIndex) {
         case 11:
@@ -206,84 +222,75 @@ function totalCentAgee() {
 ///////////////////INITIALISATION DES VARIABLES PRÉSELECTIONNÉES///////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
-function fillTauxHoraire() {
-
-    tauxHoraire = document.getElementById("taux_horaire").value;
-    console.log("taux horaire :    " + tauxHoraire);
-    console.log("tauxMoyen :    " + reservationTauxMoyen);
-
+function calculIndicateurReservation(){
+    INDICATEUR_RESERVATION = ((profilJeune*TAUX_RESERVATION_JEUNE)+(profilAgee*TAUX_RESERVATION_AGEE));
+    console.log("INDICATEUR RESERVATION = "+ INDICATEUR_RESERVATION);
 }
 
-function calculPremierRappel(){
-    var x = 1-reservationTauxMoyen;
-    CONSTANTE_premier_rappel = x * 0.35 + reservationTauxMoyen;
-    console.log("% Premier rappel"+CONSTANTE_premier_rappel);
-    //  return CONSTANTE_premier_rappel;
+function calculIndicateurAnnulationEtModification() {
+    INDICATEUR_ANNULATION_MODIFICATION = TAUX_ANNULATION_MODIFICATION*INDICATEUR_RESERVATION;
+    console.log("INDICATEUR ANNULATION/MODIFICATION = "+ INDICATEUR_ANNULATION_MODIFICATION);
 }
 
-function calculDeuxiemeRappel(){
-    CONSTANTE_deuxieme_rappel = CONSTANTE_premier_rappel * CONSTANTE_DEUXIEME_RAPPEL;
-    console.log("% Deuxieme rappel"+CONSTANTE_deuxieme_rappel);
-
-    // return CONSTANTE_deuxieme_rappel;
+/*
+MAUVAIS CALCUL
+*/
+function calculIndicateurRappel(){
+    INDICATEUR_RAPPEL = INDICATEUR_RESERVATION*TAUX_RAPPEL_ADMINISTRATIF*INDICATEUR_RESERVATION*TAUX_DEUXIEME_RAPPEL;
+    console.log("INDICATEUR RAPPEL = "+ INDICATEUR_RAPPEL);
 }
 
-function calculAnnulation(){
-
-    relancePourcentage = reservationTauxMoyen * CONSTANTE_ANNULATION;
-
-   // relancePourcentage = CONSTANTE_premier_rappel * CONSTANTE_ANNULATION;
-    console.log("% Annulation" + relancePourcentage);
-
-    // return relancePourcentage;
+function calculIndicateurRelance() {
+    INDICATEUR_RELANCE = (INDICATEUR_RESERVATION*TAUX_ANNULATION_MODIFICATION);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
 /////////////////////////CALCULS GAINS ET DÉPENSES (TOTAUX)////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
-function calculTotalHeures() {
+function calculGainTempsAdministratif() {
 
-    total_heures_recuperees = nbsReservationTemps+nbsPremierRappelTemps+nbsDeuxiemeRappelTemps+nbsRelanceVolumeTemps;
-    total_heures_recuperees = Math.round(total_heures_recuperees);
+    totalHeuresEnCommunicationRecuperees = nbsReservationTemps+nbsRappelsTemps+nbsAnnulationModificationTemps+nbsRelanceTemps;
+
+    totalHeuresEnCommunicationRecuperees = Math.round(totalHeuresEnCommunicationRecuperees);
     //var xformated = numeral(x).format('0,0');
-    console.log("Total heures récupérées = "+ total_heures_recuperees);
-    document.getElementById("heures_recuperees").innerHTML = ""+total_heures_recuperees+" heures";
-
+    console.log("Total heures récupérées = "+ totalHeuresEnCommunicationRecuperees);
+    document.getElementById("gain_temps_administratif").innerHTML = ""+totalHeuresEnCommunicationRecuperees+" heures";
 }
 
 function calculFraisUtilisation() {
-    var x = nombreRDVAnnuel*appointmentPrice;
+    frais_technologiques = volumeAnnuel*appointmentPrice;
     //x =Math.round(x);
     //var xformated = numeral(x).format('0,0');
-    frais_technologiques = x;
-    console.log("Frais technologiques = " + frais_technologiques);
-    document.getElementById("frais_technologiques").innerHTML =""+frais_technologiques+" $";
-
+    console.log("Frais d'utilisation de la platforme = " + frais_technologiques);
+    document.getElementById("frais_utilisation_plateforme").innerHTML =""+frais_technologiques+" $";
 }
 
 function calculGain() {
 
-    var x = (tauxHoraire*total_heures_recuperees)-frais_technologiques;
-    gain_efficience =x;
-   // document.getElementById("gain_efficience").innerHTML =""+x;
-    //var xformated = numeral(gain_efficience).format('0,0');
-    document.getElementById("gain_efficience").innerHTML =""+gain_efficience+" $";
+    valeurMonetaireGain = (tauxHoraire*totalHeuresEnCommunicationRecuperees)-frais_technologiques;
+
+   // document.getElementById("valeurMonetaireGain").innerHTML =""+x;
+    //var xformated = numeral(valeurMonetaireGain).format('0,0');
+    document.getElementById("valeur_monetaire_gain").innerHTML =""+valeurMonetaireGain+" $";
 }
 
 function calculROI(){
-    var x = (gain_efficience-frais_technologiques)/frais_technologiques;
-    ROI = Math.round(x);
+    ROI = (valeurMonetaireGain-frais_technologiques)/frais_technologiques;
+    //var xformated = numeral(valeurMonetaireGain).format('0,0');
+
+   // ROI = Math.round(x);
     document.getElementById("roi").innerHTML =""+ROI;
 }
-/*function calculEconomieAuRDV() {
+function calculEconomieAuRDV() {
 
-    var x = gain_efficience/nombreRDVAnnuel;
+    var x = valeurMonetaireGain/volumeAnnuel;
+    //x = parseInt(x);
     x=x.toFixed(2);
-    document.getElementById("valeur_rdv_1").innerHTML =""+x+" $";
+    document.getElementById("gain_rdv_unitaire").innerHTML =""+x+" $";
 
-   // document.getElementById("valeur_rdv").innerHTML =""+x;
+    // document.getElementById("valeur_rdv").innerHTML =""+x;
 
-}*/
+}
 /////////////////////////////////////FIN///////////////////////////////////////////
 /////////////////////////CALCULS GAINS ET DÉPENSES (TOTAUX)////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////
@@ -292,117 +299,132 @@ function calculROI(){
 ///////////////////////////////////////////////////////////////////////////////////
 ////////CALCULS DES QUANTITÉS (VOLUME & TEMPS) POUR CHAQUE COMMUNICATIONS//////////
 ///////////////////////////////////////////////////////////////////////////////////
+
+function calculDesVolumes() {
+    calculReservationVolume();
+    calculRappelsVolume();
+    calculRelancelVolume();
+    calculAnnulationEtModificationVolume();
+
+}
+
+function calculDesDurees(){
+    calculReservationTemps();
+    calculRappelsTemps();
+    calculRelanceTemps();
+    calculAnnulationEtModificationTemps();
+}
+
+
+
+
+
+
 function calculReservationVolume(){
 
-    nbsReservationVolume = nombreRDVAnnuel * reservationTauxMoyen;
-    var x = Math.round(nbsReservationVolume);
+    nbsReservationVolume = volumeAnnuel * INDICATEUR_RESERVATION;
+    nbsReservationVolume = Math.round(nbsReservationVolume);
 
-    nbsReservationVolume =x;
-    console.log("Total temps pour une réservation = "+nbsReservationVolume);
-
-    //document.getElementById("volume_reservation").innerHTML = ""+x;
-
+    console.log("Volume pour une réservation = "+nbsReservationVolume);
 }
 
 function calculReservationTemps(){
 
     var e = document.getElementById("combo_temps_reservation");
-    var v = e.options[e.selectedIndex].value;
-    nbsReservationTemps = v * nombreRDVAnnuel / 60;
-    var x = Math.round(nbsReservationTemps);
-    nbsReservationTemps =x;
+    nbsReservationTemps = e.options[e.selectedIndex].value;
 
-    console.log("Total temps pour une réservation = "+nbsReservationTemps);
+    nbsReservationTemps = ((nbsReservationTemps*volumeAnnuel)*INDICATEUR_RESERVATION)/60;
+    //nbsReservationTemps = Math.round(nbsReservationTemps);
 
+    console.log("Temps pour une réservation [ENREGISTRÉ]= "+nbsReservationTemps);
+}
 
-    // document.getElementById("temps_reservation").innerHTML = ""+x;
+function calculRappelsTemps(){
 
+    calculPremierRappelTemps();
+    calculDeuxiemeRappelTemps();
+
+    nbsRappelsTemps = nbsPremierRappelTemps+nbsDeuxiemeRappelTemps;
+    console.log("Temps pour les rappels [ENREGISTRÉ]= "+nbsRappelsTemps);
+
+}
+
+function calculRappelsVolume(){
+    calculPremierRappelVolume();
+    calculDeuxiemeRappelVolume();
+
+    nbsVolumeRappels = nbsPremierRappelVolume+nbsDeuxiemeRappelVolume;
 }
 
 function calculPremierRappelVolume(){
-    nbsPremierRappelVolume = nombreRDVAnnuel * CONSTANTE_premier_rappel;
-    var x = Math.round(nbsPremierRappelVolume);
 
-    nbsPremierRappelVolume = x;
+    nbsPremierRappelVolume = volumeAnnuel*INDICATEUR_ANNULATION_MODIFICATION;
+    //nbsPremierRappelVolume = Math.round(nbsPremierRappelVolume);
 
     console.log("Total volume premier rappel = " + nbsPremierRappelVolume);
-
-    //document.getElementById("volume_premier").innerHTML = ""+x;
-
 }
+
 
 function calculPremierRappelTemps(){
 
-    var e = document.getElementById("combo_temps_premier_rappel");
-    var v = e.options[e.selectedIndex].value;
+    var e = document.getElementById("combo_temps_annulation_modification");
+    nbsPremierRappelTemps = e.options[e.selectedIndex].value;
+    nbsPremierRappelTemps = parseInt(nbsPremierRappelTemps);
+    nbsPremierRappelTemps = ((nbsPremierRappelTemps*volumeAnnuel)*INDICATEUR_RAPPEL)/60;
+    //nbsPremierRappelTemps = Math.round(nbsPremierRappelTemps);
 
-    nbsPremierRappelTemps = v * nbsReservationVolume / 60;
-
-    var x = Math.round(nbsPremierRappelTemps);
-    nbsPremierRappelTemps = x;
-
-    console.log("Total temps premier rappel = "+nbsPremierRappelTemps);
-    //document.getElementById("temps_premier").innerHTML = ""+x;
+    //console.log("Total temps du premier rappel [ENREGISTRÉ]= " + nbsPremierRappelTemps);
 }
 
 function calculDeuxiemeRappelVolume(){
-    nbsDeuxiemeRappelVolume =nombreRDVAnnuel * CONSTANTE_deuxieme_rappel;
 
-    var x = Math.round(nbsDeuxiemeRappelVolume);
-
-    nbsDeuxiemeRappelVolume = x;
-
-
+    nbsDeuxiemeRappelVolume = volumeAnnuel * TAUX_DEUXIEME_RAPPEL;
+    nbsDeuxiemeRappelVolume = Math.round(nbsDeuxiemeRappelVolume);
 
     console.log("Total volume deuxième rappel = "+nbsDeuxiemeRappelVolume);
-
-    //document.getElementById("volume_deuxieme").innerText = ""+x;
-
 }
 
 function calculDeuxiemeRappelTemps(){
 
-    var e = document.getElementById("combo_temps_deuxieme_rappel");
-    var v = e.options[e.selectedIndex].value ;
-    nbsDeuxiemeRappelTemps = v * nbsDeuxiemeRappelVolume / 60;
+    var e = document.getElementById("combo_temps_rappel_telephonique");
+    nbsDeuxiemeRappelTemps = e.options[e.selectedIndex].value ;
+    nbsPremierRappelTemps = parseInt(nbsPremierRappelTemps);
+    nbsDeuxiemeRappelTemps = ((nbsDeuxiemeRappelTemps*volumeAnnuel)*INDICATEUR_RAPPEL)/60;
+    //nbsDeuxiemeRappelTemps = Math.round(nbsDeuxiemeRappelTemps);
 
-    var x = Math.round(nbsDeuxiemeRappelTemps);
-    nbsDeuxiemeRappelTemps = x;
-
-
-
-    console.log("Total temps deuxième rappel = "+nbsDeuxiemeRappelTemps);
-    //document.getElementById("temps_deuxieme").innerHTML = ""+x;
+    //console.log("Temps deuxième rappel [ENREGISTRÉ]= "+nbsDeuxiemeRappelTemps);
 }
 
 function calculRelancelVolume(){
-    nbsRelanceVolume = nombreRDVAnnuel* relancePourcentage;
 
-    var x = Math.round(nbsRelanceVolume);
-    nbsRelanceVolume = x;
+    nbsRelanceVolume = volumeAnnuel* INDICATEUR_RELANCE;
+    nbsRelanceVolume = Math.round(nbsRelanceVolume);
 
-    console.log("Total volume de la relance = " + nbsRelanceVolume);
-
-
-
-    //document.getElementById("volume_relance").innerHTML = ""+x;
-
+    console.log("Volume de la relance [ENREGISTRÉ]= " + nbsRelanceVolume);
 }
 
 function calculRelanceTemps(){
     var e = document.getElementById("combo_temps_relance");
-    var v = e.options[e.selectedIndex].value;
-    nbsRelanceVolumeTemps = v * nbsRelanceVolume / 60;
+    nbsRelanceTemps = e.options[e.selectedIndex].value;
+    nbsRelanceTemps - parseInt(nbsRelanceTemps);
 
-    var x = Math.round(nbsRelanceVolumeTemps);
-    nbsRelanceRappelTemps = x;
+    nbsRelanceTemps = ((nbsRelanceTemps*volumeAnnuel)*INDICATEUR_RELANCE)/60;
+    //nbsRelanceTemps = Math.round(nbsRelanceTemps);
 
+    console.log("Temps de la relance [ENREGISTRÉ]= " + nbsRelanceTemps);
+}
 
+function calculAnnulationEtModificationVolume() {
+    nbsAnnulationModificationVolume = volumeAnnuel*INDICATEUR_ANNULATION_MODIFICATION;
+    console.log("Volume de l'annulation et modifications [ENREGISTRÉ]= " + nbsRelanceTemps);
+}
 
-    console.log("Total temps de la relance = " + nbsRelanceRappelTemps);
+function calculAnnulationEtModificationTemps() {
+    var e = document.getElementById("combo_temps_annulation_modification");
+    nbsAnnulationModificationTemps = e.options[e.selectedIndex].value;
 
-
-    //document.getElementById("temps_relance").innerHTML = ""+x;
+    nbsAnnulationModificationTemps = ((volumeAnnuel*nbsAnnulationModificationTemps)*INDICATEUR_ANNULATION_MODIFICATION)/60;
+    console.log("Temps de l'annulation et modifications [ENREGISTRÉ]= " + nbsAnnulationModificationTemps);
 
 }
 //////////////////////////////////////FIN//////////////////////////////////////////
@@ -415,48 +437,52 @@ function calculRelanceTemps(){
 
 function selecteurDeBanqueRDV() {
 
-    var x = nombreRDVAnnuel;
-    var y = parseInt(x);
-    switch (y) {
-/*        case 500:
-            appointmentPrice = 0.90;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
-            break;
-        case 1000:
-            appointmentPrice = 0.85;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
-            break;
-        case 2500:
-            appointmentPrice = 0.76;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
-            break;*/
+    var rdvSwitcher = parseInt(volumeAnnuel);
+
+switch (rdvSwitcher) {
         case 5000:
-            appointmentPrice = 0.68;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
+            appointmentPrice = CONSTANTE_BANQUE_5000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_5000);
             break;
         case 10000:
-            appointmentPrice = 0.59;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
+            appointmentPrice = CONSTANTE_BANQUE_10000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_10000);
             break;
         case 20000:
-            appointmentPrice = 0.52;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
+            appointmentPrice = CONSTANTE_BANQUE_20000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_20000);
+            break;
+        case 30000:
+            appointmentPrice = CONSTANTE_BANQUE_30000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_30000);
             break;
         case 40000:
-            appointmentPrice = 0.46;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
+            appointmentPrice = CONSTANTE_BANQUE_40000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_40000);
+            break;
+        case 50000:
+            appointmentPrice = CONSTANTE_BANQUE_50000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_50000);
             break;
         case 60000:
-            appointmentPrice = 0.42;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
+            appointmentPrice = CONSTANTE_BANQUE_60000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_60000);
+            break;
+        case 70000:
+            appointmentPrice = CONSTANTE_BANQUE_70000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_70000);
             break;
         case 80000:
-            appointmentPrice = 0.39;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
+            appointmentPrice = CONSTANTE_BANQUE_80000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_80000);
+            break;
+        case 90000:
+            appointmentPrice = CONSTANTE_BANQUE_90000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_90000);
             break;
         case 100000:
-            appointmentPrice = 0.36;
-            console.log("Le prix du RDV ajusté " + appointmentPrice);
+            appointmentPrice = CONSTANTE_BANQUE_100000;
+            console.log("Le prix du RDV ajusté " + CONSTANTE_BANQUE_100000);
             break;
         default:
             console.log("Utilisateur à sélectionné CHOISIR");

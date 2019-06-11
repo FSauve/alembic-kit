@@ -23,3 +23,17 @@ div.centerCard{
     padding: 10px;
     border-radius: 10px
 }
+
+.round_btn{
+    border-radius: 25px;
+    color:#4FBBF9;
+
+}
+
+.reductionTopDiv{
+    margin-top: 5px;
+}
+
+.titreBottomH3{
+    margin-bottom: 5px;
+}
