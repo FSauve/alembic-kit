@@ -1,10 +1,9 @@
 var TAUX_RESERVATION_JEUNE = 0.90;
 var TAUX_RESERVATION_AGEE = 0.70;
 var TAUX_ANNULATION_MODIFICATION =0.10;
-
 var TAUX_DEUXIEME_RAPPEL = 0.35;
 var TAUX_RAPPEL_ADMINISTRATIF = 0.35;
-//var TAUX_RELANCE = 1;
+var TAUX_RELANCE = 1;
 
 var INDICATEUR_RESERVATION;
 var INDICATEUR_ANNULATION_MODIFICATION;
@@ -65,9 +64,8 @@ function calculer() {
     calculIndicateurAnnulationEtModification();
     calculIndicateurRappel();
     calculIndicateurRelance();
-
-    //calculDesVolumes();
     calculDesDurees();
+    //calculDesVolumes();
 }
 
 function calculerTotaux() {
@@ -222,6 +220,10 @@ function totalCentAgee() {
 ///////////////////INITIALISATION DES VARIABLES PRÉSELECTIONNÉES///////////////////
 ///////////////////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////CALCULS DES INDICATEURS//////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+
 function calculIndicateurReservation(){
     INDICATEUR_RESERVATION = ((profilJeune*TAUX_RESERVATION_JEUNE)+(profilAgee*TAUX_RESERVATION_AGEE));
     console.log("INDICATEUR RESERVATION = "+ INDICATEUR_RESERVATION);
@@ -232,17 +234,17 @@ function calculIndicateurAnnulationEtModification() {
     console.log("INDICATEUR ANNULATION/MODIFICATION = "+ INDICATEUR_ANNULATION_MODIFICATION);
 }
 
-/*
-MAUVAIS CALCUL
-*/
 function calculIndicateurRappel(){
-    INDICATEUR_RAPPEL = INDICATEUR_RESERVATION*TAUX_RAPPEL_ADMINISTRATIF*INDICATEUR_RESERVATION*TAUX_DEUXIEME_RAPPEL;
+    INDICATEUR_RAPPEL = ((1-INDICATEUR_RESERVATION)*TAUX_RAPPEL_ADMINISTRATIF)+TAUX_DEUXIEME_RAPPEL;
     console.log("INDICATEUR RAPPEL = "+ INDICATEUR_RAPPEL);
 }
 
 function calculIndicateurRelance() {
     INDICATEUR_RELANCE = (INDICATEUR_RESERVATION*TAUX_ANNULATION_MODIFICATION);
 }
+//////////////////////////////////////FIN//////////////////////////////////////////
+//////////////////////////////CALCULS DES INDICATEURS//////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////////////////////////////////////
 /////////////////////////CALCULS GAINS ET DÉPENSES (TOTAUX)////////////////////////
@@ -318,11 +320,6 @@ function calculDesDurees(){
     calculRelanceTemps();
     calculAnnulationEtModificationTemps();
 }
-
-
-
-
-
 
 function calculReservationVolume(){
 
