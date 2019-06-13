@@ -240,7 +240,7 @@ function calculIndicateurRappel(){
 }
 
 function calculIndicateurRelance() {
-    INDICATEUR_RELANCE = (INDICATEUR_RESERVATION*TAUX_ANNULATION_MODIFICATION);
+    INDICATEUR_RELANCE = (INDICATEUR_RESERVATION*TAUX_RELANCE);
 }
 //////////////////////////////////////FIN//////////////////////////////////////////
 //////////////////////////////CALCULS DES INDICATEURS//////////////////////////////
@@ -270,7 +270,7 @@ function calculFraisUtilisation() {
 
 function calculGain() {
 
-    valeurMonetaireGain = (tauxHoraire*totalHeuresEnCommunicationRecuperees)-frais_technologiques;
+    valeurMonetaireGain = (tauxHoraire*totalHeuresEnCommunicationRecuperees);
 
    // document.getElementById("valeurMonetaireGain").innerHTML =""+x;
     //var xformated = numeral(valeurMonetaireGain).format('0,0');
@@ -289,7 +289,7 @@ function calculROI(){
 }
 function calculEconomieAuRDV() {
 
-    var x = valeurMonetaireGain/volumeAnnuel;
+    var x = (valeurMonetaireGain - frais_technologiques)/volumeAnnuel;
     //x = parseInt(x);
     x=x.toFixed(2);
     document.getElementById("gain_rdv_unitaire").innerHTML =""+x+" $";
