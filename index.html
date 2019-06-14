@@ -27,18 +27,33 @@
 </head>
 <body style="font-family: 'Roboto';" onload="fillProfilAgee();fillProfilJeune();fillVolumeRDV();fillTauxHoraire()">
 
-<div class="row">
+<!--<div class="row">
     <div class="col s12 m2 l2">
 <a id="logo-container" href="https://trimoz.com" class="brand-logo"><img src="img/logo.png" alt="Retour page d'accueil" height="160" width="170"></a>
     </div>
     <div class="col s12 m10 l10">
-        <h1 class="header center" style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
+        <h1 class="header" style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
 
     </div>
 
-</div>
-<h3 class="titreBottomH3" style="padding-left: 25px;">Description du programme de santé publique</h3>
-<div class="row s12 m12 l12 center reductionTopDiv" style="background-color: lightblue;">
+</div>-->
+
+
+    <div class="row main">
+        <div class="col s2 m2 l2">
+            <a id="logo-container" href="https://trimoz.com">
+                <img src="img/logo.png" alt="Retour page d'accueil"></a>
+        </div>
+        <div class="col s10 m10 10 main">
+            <h1 style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
+        </div>
+    </div>
+
+
+<div class="col s12 main">
+    <h3 class="titreH3">Description du programme de santé publique</h3></div>
+
+<div class="row s12 m12 l12 center reductionTopDiv main" style="background-color: lightgrey;">
     <div class="row s12 m12 l12">
         <div class="col s12 m6 l6">
             <h5 style="text-align: left">Programme de services</h5>
@@ -128,12 +143,13 @@
     </div>
 </div>
 
-<h3 class="titreBottomH3" style="padding-left: 25px;">Activités liées à la prise de rendez-vous</h3>
+<div class="col s12 main">
+    <h3 class="titreH3">Activités liées à la prise de rendez-vous</h3></div>
 
-<div class="row s12 m8 l6 center reductionTopDiv" style="background-color: lightgrey;margin-bottom: 1px">
+<div class="row s12 m8 l6 center reductionTopDiv main" style="background-color: lightgrey;margin-bottom: 1px">
     <div class="row s12 m12 l12">
-        <div class="col s6 m6 l6"><h4><b>Communications téléphoniques</b></h4></div>
-        <div class="col s6 m6 l6"><h4><b>Durée</b></h4></div>
+        <div class="col s6 m6 l6"><h4 style="text-align: left"><b>Communications téléphoniques</b></h4></div>
+        <div class="col s6 m6 l6"><h4 style="text-align: left"><b>Durée</b></h4></div>
     </div>
 
 
@@ -151,7 +167,7 @@
 
         <div class="col s12 m6 l6">
             <select class="browser-default" id="combo_temps_reservation">
-               <option value="0" selected="selected">0 minutes</option>
+               <option value="0">0 minutes</option>
                 <!--<option value="1">1 minutes</option>
                <option value="2">2 minutes</option>-->
                 <option value="3" selected="selected">3 minutes</option>
@@ -258,11 +274,11 @@
     </div>
 </div>
 
-<div class="row s12 m12 l12 center reductionTopDiv" style="background-color: lightgrey;">
+<div class="row s12 m12 l12 center reductionTopDiv main" style="background-color: lightgrey;">
 
     <div class="row s12 m12 l12">
-        <div class="col s6 m6 l6"><h4><b>Taux horaire</b></h4></div>
-        <div class="col s6 m6 l6"><h4><b>$/h</b></h4></div>
+        <div class="col s6 m6 l6"><h4 style="text-align: left"><b>Taux horaire</b></h4></div>
+        <div class="col s6 m6 l6"><h4 style="text-align: left"><b>$/h</b></h4></div>
     </div>
 
     <div class="col s12 m6 l6">
@@ -298,7 +314,7 @@ Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h inc
             <option value="17">17 $/h</option>
             <option value="18">18 $/h</option>
             <option value="19">19 $/h</option>-->
-            <option value="20">20 $/h</option>
+            <option value="20" selected="selected">20 $/h</option>
             <option value="21">21 $/h</option>
             <option value="22">22 $/h</option>
             <option value="23">23 $/h</option>
@@ -325,10 +341,10 @@ Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h inc
     <a class="waves-effect waves-light btn-large" style="background-color:#4FBBF9;margin-bottom: 40px;" onclick="autoFillPreselected();calculer();calculerTotaux();hideDiv()"><i class="material-icons right">attach_money</i>Calculer</a>
 </div>
 
-<div class="row" id="hideResults" style="display: none;">
-<h3 class="titreBottomH3" style="padding-left: 25px;">Tableau des gains d’efficence</h3>
+<div class="col s12 main" id="hideResults" style="display: none;">
+        <h3 class="titreH3">Tableau des gains d’efficence</h3>
 
-<div class="row s12 m8 l6 center reductionTopDiv" style="background-color: lightblue;">
+<div class="row s12 m8 l6 center reductionTopDiv" style="background-color: lightblue;margin: 0px">
 
     <div class="row s12 m12 l12">
         <div class="col s1 m1 l1">
