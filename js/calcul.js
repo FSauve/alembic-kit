@@ -368,10 +368,11 @@ function calculPremierRappelVolume(){
 
 function calculPremierRappelTemps(){
 
-    var e = document.getElementById("combo_temps_annulation_modification");
-    nbsPremierRappelTemps = e.options[e.selectedIndex].value;
-    nbsPremierRappelTemps = parseInt(nbsPremierRappelTemps);
-    nbsPremierRappelTemps = ((nbsPremierRappelTemps*volumeAnnuel)*INDICATEUR_RAPPEL)/60;
+    var e = document.getElementById("combo_temps_rappel_telephonique");
+    var value = e.options[e.selectedIndex].value;
+    value = parseInt(value);
+
+    nbsPremierRappelTemps = ((value*volumeAnnuel)*INDICATEUR_RESERVATION)/60;
     //nbsPremierRappelTemps = Math.round(nbsPremierRappelTemps);
 
     //console.log("Total temps du premier rappel [ENREGISTRÉ]= " + nbsPremierRappelTemps);
@@ -388,9 +389,9 @@ function calculDeuxiemeRappelVolume(){
 function calculDeuxiemeRappelTemps(){
 
     var e = document.getElementById("combo_temps_rappel_telephonique");
-    nbsDeuxiemeRappelTemps = e.options[e.selectedIndex].value ;
-    nbsPremierRappelTemps = parseInt(nbsPremierRappelTemps);
-    nbsDeuxiemeRappelTemps = ((nbsDeuxiemeRappelTemps*volumeAnnuel)*INDICATEUR_RAPPEL)/60;
+    var value = e.options[e.selectedIndex].value ;
+    value = parseInt(value);
+    nbsDeuxiemeRappelTemps = ((value*volumeAnnuel)*INDICATEUR_RAPPEL)/60;
     //nbsDeuxiemeRappelTemps = Math.round(nbsDeuxiemeRappelTemps);
 
     //console.log("Temps deuxième rappel [ENREGISTRÉ]= "+nbsDeuxiemeRappelTemps);
@@ -422,11 +423,10 @@ function calculAnnulationEtModificationVolume() {
 
 function calculAnnulationEtModificationTemps() {
     var e = document.getElementById("combo_temps_annulation_modification");
-    nbsAnnulationModificationTemps = e.options[e.selectedIndex].value;
+    var value = e.options[e.selectedIndex].value;
 
-    nbsAnnulationModificationTemps = ((volumeAnnuel*nbsAnnulationModificationTemps)*INDICATEUR_ANNULATION_MODIFICATION)/60;
+    nbsAnnulationModificationTemps = (volumeAnnuel*value*(INDICATEUR_ANNULATION_MODIFICATION*INDICATEUR_RESERVATION))/60;
     console.log("Temps de l'annulation et modifications [ENREGISTRÉ]= " + nbsAnnulationModificationTemps);
-
 }
 //////////////////////////////////////FIN//////////////////////////////////////////
 ////////CALCULS DES QUANTITÉS (VOLUME & TEMPS) POUR CHAQUE COMMUNICATIONS//////////

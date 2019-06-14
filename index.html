@@ -25,35 +25,23 @@
 
 
 </head>
-<body style="font-family: 'Roboto';" onload="fillProfilAgee();fillProfilJeune();fillVolumeRDV();fillTauxHoraire()">
+<body style="font-family: 'Roboto';" onload="fillProfilAgee();fillProfilJeune();fillVolumeRDV();fillTauxHoraire();">
 
-<!--<div class="row">
-    <div class="col s12 m2 l2">
-<a id="logo-container" href="https://trimoz.com" class="brand-logo"><img src="img/logo.png" alt="Retour page d'accueil" height="160" width="170"></a>
+<div class="row main">
+    <div class="col s2 m2 l2">
+        <a id="logo-container" href="https://trimoz.com">
+            <img src="img/logo.png" alt="Retour page d'accueil"></a>
     </div>
-    <div class="col s12 m10 l10">
-        <h1 class="header" style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
-
+    <div class="col s10 m10 10 main">
+        <h1 style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
     </div>
-
-</div>-->
-
-
-    <div class="row main">
-        <div class="col s2 m2 l2">
-            <a id="logo-container" href="https://trimoz.com">
-                <img src="img/logo.png" alt="Retour page d'accueil"></a>
-        </div>
-        <div class="col s10 m10 10 main">
-            <h1 style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
-        </div>
-    </div>
+</div>
 
 
 <div class="col s12 main">
     <h3 class="titreH3">Description du programme de santé publique</h3></div>
 
-<div class="row s12 m12 l12 center reductionTopDiv main" style="background-color: lightgrey;">
+<div class="row s12 m12 l12 reductionTopDiv main" style="background-color: lightgrey;">
     <div class="row s12 m12 l12">
         <div class="col s12 m6 l6">
             <h5 style="text-align: left">Programme de services</h5>
@@ -114,7 +102,6 @@
                 <option value="0.20">20%</option>
                 <option value="0.10">10%</option>
                 <option value="0">0%</option>
-
             </select>
 
         </div>
@@ -146,7 +133,7 @@
 <div class="col s12 main">
     <h3 class="titreH3">Activités liées à la prise de rendez-vous</h3></div>
 
-<div class="row s12 m8 l6 center reductionTopDiv main" style="background-color: lightgrey;margin-bottom: 1px">
+<div class="row s12 m8 l6 reductionTopDiv main" style="background-color: lightgrey;margin-bottom: 1px">
     <div class="row s12 m12 l12">
         <div class="col s6 m6 l6"><h4 style="text-align: left"><b>Communications téléphoniques</b></h4></div>
         <div class="col s6 m6 l6"><h4 style="text-align: left"><b>Durée</b></h4></div>
@@ -167,7 +154,7 @@
 
         <div class="col s12 m6 l6">
             <select class="browser-default" id="combo_temps_reservation">
-               <option value="0">0 minutes</option>
+                <option value="0">0 minutes</option>
                 <!--<option value="1">1 minutes</option>
                <option value="2">2 minutes</option>-->
                 <option value="3" selected="selected">3 minutes</option>
@@ -281,6 +268,8 @@
         <div class="col s6 m6 l6"><h4 style="text-align: left"><b>$/h</b></h4></div>
     </div>
 
+
+
     <div class="col s12 m6 l6">
         <div class="row">
             <div class="s1 m1 l1">
@@ -292,28 +281,12 @@ Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h inc
             </div>
         </div>
     </div>
+
+
+
     <div class="col s12 m6 l6">
         <select class="browser-default" id="taux_horaire" oninput="fillTauxHoraire()">
             <option value="0" selected="selected">0 $/h</option>
-<!--            <option value="1">1 $/h</option>
-            <option value="2">2 $/h</option>
-            <option value="3">3 $/h</option>
-            <option value="4">4 $/h</option>
-            <option value="5">5 $/h</option>
-            <option value="6">6 $/h</option>
-            <option value="7">7 $/h</option>
-            <option value="8">8 $/h</option>
-            <option value="9">9 $/h</option>
-            <option value="10">10 $/h</option>
-            <option value="11">11 $/h</option>
-            <option value="12">12 $/h</option>
-            <option value="13">13 $/h</option>
-            <option value="14">14 $/h</option>
-            <option value="15">15 $/h</option>
-            <option value="16">16 $/h</option>
-            <option value="17">17 $/h</option>
-            <option value="18">18 $/h</option>
-            <option value="19">19 $/h</option>-->
             <option value="20" selected="selected">20 $/h</option>
             <option value="21">21 $/h</option>
             <option value="22">22 $/h</option>
@@ -337,28 +310,35 @@ Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h inc
     </div>
 </div>
 
-<div class="row s10 m2 l2 center">
-    <a class="waves-effect waves-light btn-large" style="background-color:#4FBBF9;margin-bottom: 40px;" onclick="autoFillPreselected();calculer();calculerTotaux();hideDiv()"><i class="material-icons right">attach_money</i>Calculer</a>
-</div>
+<!--<div class="row s10 m2 l2 center">
+    <a class="waves-effect waves-light btn-large" style="background-color:#4FBBF9;margin-bottom: 40px;" onclick="autoFillPreselected();calculer();calculerTotaux();hideDiv();"><i class="material-icons right">attach_money</i>Calculer</a>
+</div>-->
 
-<div class="col s12 main" id="hideResults" style="display: none;">
+<!--<button class="btn waves-effect waves-light" data-target="modal1" type="submit" name="action">Submit
+    <i class="material-icons right">send</i>
+</button>-->
+
+<div class="col s12 m4 l4 center">
+<a class="btn modal-trigger" href="#modal1" style="margin-top: 10px;margin-bottom: 15px" onclick="autoFillPreselected();calculer();calculerTotaux();">Calculer</a>
+</div>
+<div id="modal1" class="modal">
+    <div class="modal-content">
+
         <h3 class="titreH3">Tableau des gains d’efficence</h3>
 
-<div class="row s12 m8 l6 center reductionTopDiv" style="background-color: lightblue;margin: 0px">
+        <div class="row">
+                <div class="col s1 m1 l1" style="vertical-align: middle">
+                    <a class="tooltipped" data-position="bottom" data-tooltip="Le gain de temps administratif représente le nombre d’heures de travail récupérer grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
+                </div>
+                <div class="col s11 m5 l5">
+                    <h5 style="text-align: left">Gains de temps administratif</h5>
+                </div>
+            <div class="col s12 m6 l6">
+                <h5 style="font-weight: bold;" id="gain_temps_administratif"></h5>
+            </div>
+        </div>
 
-    <div class="row s12 m12 l12">
-        <div class="col s1 m1 l1">
-            <a class="tooltipped" data-position="bottom" data-tooltip="Le gain de temps administratif représente le nombre d’heures de travail récupérer grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
-        </div>
-        <div class="col s11 m5 l5">
-            <h5 style="text-align: left">Gains de temps administratif</h5>
-        </div>
-        <div class="col s12 m6 l6">
-            <h5 style="font-weight: bold;" id="gain_temps_administratif"></h5>
-        </div>
-    </div>
-
-    <div class="row s12 m12 l12">
+    <div class="row">
         <div class="col s1 m1 l1">
             <a class="tooltipped" data-position="bottom" data-tooltip="La valeur monétaire des gains administratifs représente le montant d’argent récupéré grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
         </div>
@@ -371,20 +351,19 @@ Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h inc
         </div>
     </div>
 
-    <div class="row s12 m12 l12">
+    <div class="row">
         <div class="col s1 m1 l1">
             <a class="tooltipped" data-position="bottom" data-tooltip="Les frais d’utilisation de la plateforme inclus l’hébergement, le support technique et le cout d’utilisation par rendez-vous."><i class="material-icons left">info</i></a>
         </div>
         <div class="col s12 m5 l5">
             <h5 style="text-align: left">Frais d’utilisation de la plateforme</h5>
         </div>
-
         <div class="col s12 m6 l6">
             <h5 style="font-weight: bold; " id="frais_utilisation_plateforme"></h5>
         </div>
     </div>
 
-    <div class="row s12 m12 l12">
+    <div class="row">
         <div class="col s1 m1 l1">
             <a class="tooltipped" data-position="bottom" data-tooltip="Le gains d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquitté"><i class="material-icons left">info</i></a>
         </div>
@@ -397,7 +376,8 @@ Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h inc
             <h5 style="font-weight: bold;" id="gain_rdv_unitaire"></h5>
         </div>
     </div>
-    <div class="row s12 m12 l12">
+
+    <div class="row">
         <div class="col s1 m1 l1">
             <a class="tooltipped" data-position="bottom" data-tooltip="Le gains d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquitté"><i class="material-icons left">info</i></a>
         </div>
@@ -409,21 +389,95 @@ Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h inc
             <h5 style="font-weight: bold;" id="roi"></h5>
         </div>
     </div>
-
-</div>
-</div>
-</div>
 </div>
 
-<!--         <th class="centerTextinTable"><h4 style="font-weight: bold;">Gains et dépenses</h4></th>
-         <th class="centerTextinTable"><h4 style="font-weight: bold;">Résultats</h4></th>-->
+<div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Terminer</a>
+</div>
+</div>
+
+<div class="col s12" id="hideResults" style="display: none;">
+
+    <!--<div class="main"><h3 class="titreH3">Tableau des gains d’efficence</h3></div>
+
+        <div class="row s12 m8 l6 center reductionTopDiv main" style="background-color: lightblue;margin: 0px">
+
+            <div class="row s12 m12 l12">
+                <div class="col s1 m1 l1">
+                    <a class="tooltipped" data-position="bottom" data-tooltip="Le gain de temps administratif représente le nombre d’heures de travail récupérer grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
+                </div>
+                <div class="col s11 m5 l5">
+                    <h5 style="text-align: left">Gains de temps administratif</h5>
+                </div>
+                <div class="col s12 m6 l6">
+                    <h5 style="font-weight: bold;" id="gain_temps_administratif"></h5>
+                </div>
+            </div>
+
+            <div class="row s12 m12 l12">
+                <div class="col s1 m1 l1">
+                    <a class="tooltipped" data-position="bottom" data-tooltip="La valeur monétaire des gains administratifs représente le montant d’argent récupéré grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
+                </div>
+                <div class="col s11 m5 l5">
+                    <h5 style="text-align: left">Valeur monétaire des gains ($)</h5>
+                </div>
+
+                <div class="col s12 m6 l6">
+                    <h5 style="font-weight: bold;" id="valeur_monetaire_gain"></h5>
+                </div>
+            </div>
+
+            <div class="row s12 m12 l12">
+                <div class="col s1 m1 l1">
+                    <a class="tooltipped" data-position="bottom" data-tooltip="Les frais d’utilisation de la plateforme inclus l’hébergement, le support technique et le cout d’utilisation par rendez-vous."><i class="material-icons left">info</i></a>
+                </div>
+                <div class="col s12 m5 l5">
+                    <h5 style="text-align: left">Frais d’utilisation de la plateforme</h5>
+                </div>
+
+                <div class="col s12 m6 l6">
+                    <h5 style="font-weight: bold; " id="frais_utilisation_plateforme"></h5>
+                </div>
+            </div>
+
+            <div class="row s12 m12 l12">
+                <div class="col s1 m1 l1">
+                    <a class="tooltipped" data-position="bottom" data-tooltip="Le gains d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquitté"><i class="material-icons left">info</i></a>
+                </div>
+                <div class="col s12 m5 l5">
+                    <h5 style="text-align: left">Gain d’efficience par rendez-vous
+                    </h5>
+                </div>
+
+                <div class="col s12 m6 l6">
+                    <h5 style="font-weight: bold;" id="gain_rdv_unitaire"></h5>
+                </div>
+            </div>
+            <div class="row s12 m12 l12">
+                <div class="col s1 m1 l1">
+                    <a class="tooltipped" data-position="bottom" data-tooltip="Le gains d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquitté"><i class="material-icons left">info</i></a>
+                </div>
+                <div class="col s12 m5 l5">
+                    <h5 style="text-align: left">Retour sur l’investissement (ROI)</h5>
+                </div>
+
+                <div class="col s12 m6 l6">
+                    <h5 style="font-weight: bold;" id="roi"></h5>
+                </div>
+            </div>
+
+        </div>-->
+</div>
+
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+
 <!--SOURCE = http://numeraljs.com/-->
 <script src="js/calcul.js"></script>
 <script src="js/interactions.js"></script>
+
 </body>
 </html>
