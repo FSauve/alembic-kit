@@ -12,6 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Modal.init(elems, {onOpenStart:null});
 });
 
+/*function checkIfFilled(){
+
+
+    alert("Un ou plusieurs champs sont invalide");
+}*/
 
 /*
 // Get the modal

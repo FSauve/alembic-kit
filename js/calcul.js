@@ -342,10 +342,10 @@ function calculReservationTemps(){
 
 function calculRappelsTemps(){
 
-    calculPremierRappelTemps();
+    // calculPremierRappelTemps();
     calculDeuxiemeRappelTemps();
 
-    nbsRappelsTemps = nbsPremierRappelTemps+nbsDeuxiemeRappelTemps;
+    nbsRappelsTemps = /*nbsPremierRappelTemps+*/nbsDeuxiemeRappelTemps;
     console.log("Temps pour les rappels [ENREGISTRÉ]= "+nbsRappelsTemps);
 
 }
