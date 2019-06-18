@@ -254,9 +254,11 @@ function calculGainTempsAdministratif() {
     totalHeuresEnCommunicationRecuperees = nbsReservationTemps+nbsRappelsTemps+nbsAnnulationModificationTemps+nbsRelanceTemps;
 
     totalHeuresEnCommunicationRecuperees = Math.round(totalHeuresEnCommunicationRecuperees);
+    var nbsRessources = totalHeuresEnCommunicationRecuperees/1800;
+    nbsRessources = nbsRessources.toFixed(2);
     //var xformated = numeral(x).format('0,0');
     console.log("Total heures récupérées = "+ totalHeuresEnCommunicationRecuperees);
-    document.getElementById("gain_temps_administratif").innerHTML = ""+totalHeuresEnCommunicationRecuperees+" heures";
+    document.getElementById("gain_temps_administratif").innerHTML = ""+totalHeuresEnCommunicationRecuperees+" heures ("+nbsRessources+" RH / année)";
 }
 
 function calculFraisUtilisation() {

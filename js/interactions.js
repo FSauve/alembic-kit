@@ -12,10 +12,24 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Modal.init(elems, {onOpenStart:null});
 });
 
+/*document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, {exitDelay:5000},{enterDelay:5000});
+});*/
+
 /*function checkIfFilled(){
 
+   var varAnnuel = document.getElementById("volume_rdv_annuel").selectedIndex;
+    var varJeune = document.getElementById("jeune").selectedIndex;
+        var varAgee = document.getElementById("agee").selectedIndex;
 
-    alert("Un ou plusieurs champs sont invalide");
+        if(varAnnuel==0 || varJeune=="Sélectionner" || varJeune=="Sélectionner"){
+            alert("Un ou plusieurs champs sont invalide(s)");
+        }else if(varAnnuel!=0 || varJeune!="Sélectionner" || varJeune!="Sélectionner"){
+            autoFillPreselected();
+            calculer();
+            calculerTotaux();
+        }
 }*/
 
 /*

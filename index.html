@@ -30,7 +30,7 @@
 <div class="row main">
     <div class="col s2 m2 l2">
         <a id="logo-container" href="https://trimoz.com">
-            <img src="img/logo.png" alt="Retour page d'accueil"></a>
+            <img src="img/logo.png" alt="Retour page d'accueil" style="width: 200px;height: 400px"></a>
     </div>
     <div class="col s10 m10 10 main">
         <h1 style="color:#4FBBF9;">Calcul des gains d’efficience</h1>
@@ -38,16 +38,24 @@
 </div>
 
 
-<div class="col s12 main">
-    <h3 class="titreH3">Description du programme de santé publique</h3></div>
+<!--<div class="col s12 main">-->
+    <!--<h3 class="titreH3">Description du programme de santé publique</h3></div>-->
 
-<div class="row s12 m12 l12 reductionTopDiv main" style="background-color: lightgrey;">
+<div class="row main radius divGreyContainer">
+
+    <div class="row s12 m12 l12">
+        <div class="col s6 m6 l6"><h5 class="titreH5SousTitre"><b>Description du programme de santé publique</b></h5></div>
+<!--
+        <div class="col s6 m6 l6"><h5 class="titreH5SousTitre"><b>Attributs</b></h5></div>
+-->
+    </div>
+
     <div class="row s12 m12 l12">
         <div class="col s12 m6 l6">
             <h5 style="text-align: left">Programme de services</h5>
         </div>
 
-        <div class="col s12 m6 l6">
+        <div class="col s12 m6 l3">
             <select  class="browser-default" id="programme_service">
                 <option selected="selected">Sélectionner</option>
                 <option value="Grippe">Grippe</option>
@@ -65,7 +73,7 @@
             <h5 style="text-align: left">Volume de rendez-vous annuel</h5>
         </div>
 
-        <div class="col s12 m6 l6">
+        <div class="col s12 m6 l3">
             <select  class="browser-default" id="volume_rdv_annuel" oninput="fillVolumeRDV()">
                 <option value="0" selected="selected">0</option>
                 <option value="5000">5 000</option>
@@ -88,7 +96,7 @@
             <h5 style="text-align: left">Profil de la clientèle jeune</h5>
         </div>
 
-        <div class="col s12 m6 l6">
+        <div class="col s12 m6 l3">
             <select class="browser-default" id="jeune" oninput="fillProfilJeune();">
                 <option selected="selected">Sélectionner</option>
                 <option value="1">100%</option>
@@ -109,9 +117,9 @@
 
     <div class="row s12 m12 l12">
         <div class="col s12 m6 l6">
-            <h5 style="text-align: left">Profil de la clientèle agee</h5>
+            <h5 style="text-align: left">Profil de la clientèle âgée</h5>
         </div>
-        <div class="col s12 m6 l6">
+        <div class="col s12 m6 l3">
             <select class="browser-default" id="agee" oninput="fillProfilAgee();">
                 <option selected="selected">Sélectionner</option>
                 <option value="1">100%</option>
@@ -130,33 +138,33 @@
     </div>
 </div>
 
-<div class="col s12 main">
-    <h3 class="titreH3">Activités liées à la prise de rendez-vous</h3></div>
+<!--<div class="col s12 main">-->
+    <!--<h3 class="titreH3">Activités liées à la prise de rendez-vous</h3></div>-->
 
-<div class="row s12 m8 l6 reductionTopDiv main" style="background-color: lightgrey;margin-bottom: 1px">
+<div class="row s12 m8 l6 reductionTopDiv main radius divGreyContainer">
     <div class="row s12 m12 l12">
-        <div class="col s6 m6 l6"><h4 style="text-align: left"><b>Communications téléphoniques</b></h4></div>
-        <div class="col s6 m6 l6"><h4 style="text-align: left"><b>Durée</b></h4></div>
+        <div class="col s6 m6 l6"><h5 class="titreH5SousTitre"><b>Activités liées à la prise de rendez-vous</b></h5></div>
+        <div class="col s6 m6 l6"><h5 class="titreH5SousTitre"><b>Durée</b></h5></div>
     </div>
 
 
     <div class="row s12 m12 l12">
         <div class="col s12 m6 l6">
             <div class="row">
-                <div class="s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Entrez la durée moyenne de la tâche liée à la réservation d’un rendez-vous par téléphone."><i class="material-icons left">info</i></a>
+
+                <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                    <span class="tooltiptext">Entrez la durée moyenne de la tâche liée à la réservation d’un rendez-vous par téléphone.</span>
                 </div>
+
                 <div class="s11 m5 l5">
-                    <h5 style="text-align: left">Durée moyenne d’une <ins>réservation</ins></h5>
+                    <h5 style="text-align: left">Durée moyenne d’une <ins>réservation téléphonique</ins></h5>
                 </div>
             </div>
         </div>
 
-        <div class="col s12 m6 l6">
+        <div class="col s12 m6 l3">
             <select class="browser-default" id="combo_temps_reservation">
                 <option value="0">0 minutes</option>
-                <!--<option value="1">1 minutes</option>
-               <option value="2">2 minutes</option>-->
                 <option value="3" selected="selected">3 minutes</option>
                 <option value="4">4 minutes</option>
                 <option value="5">5 minutes</option>
@@ -173,23 +181,20 @@
 
         <div class="col s12 m6 l6">
             <div class="row">
-                <div class="s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Entrez la durée moyenne de la tâche liée à une annulation ou modification de rdv  par téléphone."><i class="material-icons left">info</i></a>
+
+                <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                    <span class="tooltiptext">Entrez la durée moyenne de la tâche liée à une annulation ou modification de rdv  par téléphone.</span>
                 </div>
+
                 <div class="s11 m5 l5">
-                    <h5 style="text-align: left">Durée d’une annulation\modification</h5>
+                    <h5 style="text-align: left">Durée d’une annulation \ modification</h5>
                 </div>
             </div>
-
-
-            <!--<h5 style="text-align: left">Durée moyenne d’un premier rappel</h5>-->
         </div>
 
-        <div class="col s12 m6 l6">
+        <div class="col s12 m6 l3">
             <select class="browser-default" id="combo_temps_annulation_modification">
                 <option value="0" selected="selected">0 minutes</option>
-                <!--<option value="1">1 minutes</option>
-                <option value="2">2 minutes</option>-->
                 <option value="3">3 minutes</option>
                 <option value="4">4 minutes</option>
                 <option value="5">5 minutes</option>
@@ -205,9 +210,11 @@
     <div class="row s12 m12 l12">
         <div class="col s12 m6 l6">
             <div class="row">
-                <div class="s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Entrez la durée moyenne de la tâche liée à un rappel d’un rendez-vous par téléphone."><i class="material-icons left">info</i></a>
+
+                <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                    <span class="tooltiptext">Entrez la durée moyenne de la tâche liée à un rappel d’un rendez-vous par téléphone.</span>
                 </div>
+
                 <div class="s11 m5 l5">
                     <h5 style="text-align: left">Durée moyenne d’un <ins>rappel téléphonique</ins></h5>
                 </div>
@@ -215,7 +222,7 @@
             <!--<h5 style="text-align: left">Durée moyenne d’un second rappel</h5>-->
         </div>
 
-        <div class="col s12 m6 l6">
+        <div class="col s12 m6 l3">
             <select class="browser-default" id="combo_temps_rappel_telephonique">
                 <option value="0" selected="selected">0 minutes</option>
                 <!--<option value="1">1 minutes</option>
@@ -235,15 +242,20 @@
     <div class="row s12 m12 l12">
         <div class="col s12 m6 l6">
             <div class="row">
-                <div class="s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Entrez la durée moyenne de la tâche liée à une relance pour un prochain rendez-vous. Si vus ne relancer pas vos patients , laissé la durée a zéro."><i class="material-icons left">info</i></a>
+                <!--   <div class="s1 m1 l1">
+                       <a class="tooltip" data-position="bottom" data-tooltip="Entrez la durée moyenne de la tâche liée à une relance pour un prochain rendez-vous. Si vus ne relancer pas vos patients , laissé la durée a zéro."><i class="material-icons left">info</i></a>
+                   </div>-->
+
+                <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                    <span class="tooltiptext">Entrez la durée moyenne de la tâche liée à une relance pour un prochain rendez-vous. Si vous ne relancer pas vos patients , laissé la durée a zéro.</span>
                 </div>
+
                 <div class="s11 m5 l5">
                     <h5 style="text-align: left">Durée moyenne d’une relance téléphonique</h5>
                 </div>
             </div>
         </div>
-        <div class="col s12 m6 l6">
+        <div class="col s12 m6 l3">
             <select class="browser-default" id="combo_temps_relance">
                 <option value="0" selected="selected">0 minutes</option>
                 <!--<option value="1">1 minutes</option>
@@ -261,30 +273,27 @@
     </div>
 </div>
 
-<div class="row s12 m12 l12 center reductionTopDiv main" style="background-color: lightgrey;">
+<div class="row s12 m12 l12 radius main divGreyContainer">
 
     <div class="row s12 m12 l12">
-        <div class="col s6 m6 l6"><h4 style="text-align: left"><b>Taux horaire</b></h4></div>
-        <div class="col s6 m6 l6"><h4 style="text-align: left"><b>$/h</b></h4></div>
+        <div class="col s6 m6 l6"><h5 class="titreH5SousTitre"><b>Taux horaire</b></h5></div>
+        <div class="col s6 m6 l6"><h5 class="titreH5SousTitre"><b>$ / h</b></h5></div>
     </div>
-
-
 
     <div class="col s12 m6 l6">
         <div class="row">
-            <div class="s1 m1 l1">
-                <a class="tooltipped" data-position="bottom" data-tooltip="Entrez le taux horaire moyen d’une agente administrative en plus des frais généraux.
-Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h incluant les frais généraux."><i class="material-icons left">info</i></a>
+
+            <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                <span class="tooltiptext">Entrez le taux horaire moyen d’une agente administrative en plus des frais généraux.
+Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h incluant les frais généraux.</span>
             </div>
+
             <div class="s11 m5 l5">
                 <h5 style="text-align: left">Agent(e) administratif(ve)</h5>
             </div>
         </div>
     </div>
-
-
-
-    <div class="col s12 m6 l6">
+    <div class="col s12 m6 l3">
         <select class="browser-default" id="taux_horaire" oninput="fillTauxHoraire()">
             <option value="0" selected="selected">0 $/h</option>
             <option value="20" selected="selected">20 $/h</option>
@@ -310,164 +319,99 @@ Ex: Le taux d’horaire d’une agente administrative senior est de 32,50$/h inc
     </div>
 </div>
 
-<!--<div class="row s10 m2 l2 center">
-    <a class="waves-effect waves-light btn-large" style="background-color:#4FBBF9;margin-bottom: 40px;" onclick="autoFillPreselected();calculer();calculerTotaux();hideDiv();"><i class="material-icons right">attach_money</i>Calculer</a>
-</div>-->
-
-<!--<button class="btn waves-effect waves-light" data-target="modal1" type="submit" name="action">Submit
-    <i class="material-icons right">send</i>
-</button>-->
-
 <div class="col s12 m4 l4 center" >
-<a class="btn modal-trigger" href="#modal1" style="margin-top: 10px;margin-bottom: 15px;background-color: #00b0ff" onclick="autoFillPreselected();calculer();calculerTotaux();">Calculer</a>
+    <a class="btn modal-trigger" href="#modal1" style="margin-top: 10px;margin-bottom: 15px;background-color: #00b0ff;font-size: 22px" onclick="autoFillPreselected();calculer();calculerTotaux();">Calculer</a>
 </div>
+
 <div id="modal1" class="modal">
     <div class="modal-content">
 
-        <h3 class="titreH3">Tableau des gains d’efficence</h3>
+        <div class="row"><h5 class="titreH5SousTitre" style="text-align: center;margin-bottom: 15px"><b>Tableau des gains d’efficence</b></h5></div>
 
         <div class="row">
-                <div class="col s1 m1 l1" style="vertical-align: middle">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Le gain de temps administratif représente le nombre d’heures de travail récupérer grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
-                </div>
-                <div class="col s11 m5 l5">
-                    <h5 style="text-align: left">Gains de temps administratif</h5>
-                </div>
+
+            <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                <span class="tooltiptext">Le gain de temps administratif représente le nombre d’heures de travail récupérées grâce à l’automatisation des communications</span>
+            </div>
+
+            <div class="col s11 m5 l5">
+                <h5 style="text-align: left">Gains de temps administratif</h5>
+            </div>
             <div class="col s12 m6 l6">
                 <h5 style="font-weight: bold;" id="gain_temps_administratif"></h5>
             </div>
         </div>
 
-    <div class="row">
-        <div class="col s1 m1 l1">
-            <a class="tooltipped" data-position="bottom" data-tooltip="La valeur monétaire des gains administratifs représente le montant d’argent récupéré grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
-        </div>
-        <div class="col s11 m5 l5">
-            <h5 style="text-align: left">Valeur monétaire des gains ($)</h5>
+        <div class="row">
+
+            <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                <span class="tooltiptext">La valeur monétaire des gains administratifs représente le montant d’argent récupéré grâce à l’automatisation des communications</span>
+            </div>
+
+            <div class="col s11 m5 l5">
+                <h5 style="text-align: left">Valeur monétaire des gains ($)</h5>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <h5 style="font-weight: bold;" id="valeur_monetaire_gain"></h5>
+            </div>
         </div>
 
-        <div class="col s12 m6 l6">
-            <h5 style="font-weight: bold;" id="valeur_monetaire_gain"></h5>
+        <div class="row">
+
+            <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                <span class="tooltiptext">Les frais d’utilisation de la plateforme incluent l’hébergement, le support technique et le coût d’utilisation par rendez-vous</span>
+            </div>
+
+
+            <div class="col s12 m5 l5">
+                <h5 style="text-align: left">Frais d’utilisation de la plateforme</h5>
+            </div>
+            <div class="col s12 m6 l6">
+                <h5 style="font-weight: bold; " id="frais_utilisation_plateforme"></h5>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                <span class="tooltiptext">Le gain d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquittés</span>
+            </div>
+
+            <div class="col s12 m5 l5">
+                <h5 style="text-align: left">Gain d’efficience par rendez-vous
+                </h5>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <h5 style="font-weight: bold;" id="gain_rdv_unitaire"></h5>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col s1 m1 l1 tooltip"><i class="material-icons infoTooltip">info</i>
+                <span class="tooltiptext">Le ROI est un indicateur financier; il permet de comparer le rendement par rapport aux sommes initiales investies</span>
+            </div>
+
+            <div class="col s12 m5 l5">
+                <h5 style="text-align: left">Retour sur l’investissement (ROI)</h5>
+            </div>
+
+            <div class="col s12 m6 l6">
+                <h5 style="font-weight: bold;" id="roi"></h5>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col s1 m1 l1">
-            <a class="tooltipped" data-position="bottom" data-tooltip="Les frais d’utilisation de la plateforme inclus l’hébergement, le support technique et le cout d’utilisation par rendez-vous."><i class="material-icons left">info</i></a>
-        </div>
-        <div class="col s12 m5 l5">
-            <h5 style="text-align: left">Frais d’utilisation de la plateforme</h5>
-        </div>
-        <div class="col s12 m6 l6">
-            <h5 style="font-weight: bold; " id="frais_utilisation_plateforme"></h5>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s1 m1 l1">
-            <a class="tooltipped" data-position="bottom" data-tooltip="Le gains d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquitté"><i class="material-icons left">info</i></a>
-        </div>
-        <div class="col s12 m5 l5">
-            <h5 style="text-align: left">Gain d’efficience par rendez-vous
-            </h5>
-        </div>
-
-        <div class="col s12 m6 l6">
-            <h5 style="font-weight: bold;" id="gain_rdv_unitaire"></h5>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col s1 m1 l1">
-            <a class="tooltipped" data-position="bottom" data-tooltip="Le gains d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquitté"><i class="material-icons left">info</i></a>
-        </div>
-        <div class="col s12 m5 l5">
-            <h5 style="text-align: left">Retour sur l’investissement (ROI)</h5>
-        </div>
-
-        <div class="col s12 m6 l6">
-            <h5 style="font-weight: bold;" id="roi"></h5>
-        </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-blue btn-flat">Retour</a>
     </div>
 </div>
 
-<div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Terminer</a>
-</div>
-</div>
+<!--<div class="col s12" id="hideResults" style="display: none;">
 
-<div class="col s12" id="hideResults" style="display: none;">
-
-    <!--<div class="main"><h3 class="titreH3">Tableau des gains d’efficence</h3></div>
-
-        <div class="row s12 m8 l6 center reductionTopDiv main" style="background-color: lightblue;margin: 0px">
-
-            <div class="row s12 m12 l12">
-                <div class="col s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Le gain de temps administratif représente le nombre d’heures de travail récupérer grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
-                </div>
-                <div class="col s11 m5 l5">
-                    <h5 style="text-align: left">Gains de temps administratif</h5>
-                </div>
-                <div class="col s12 m6 l6">
-                    <h5 style="font-weight: bold;" id="gain_temps_administratif"></h5>
-                </div>
-            </div>
-
-            <div class="row s12 m12 l12">
-                <div class="col s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="La valeur monétaire des gains administratifs représente le montant d’argent récupéré grâce a l’automatisation des communications"><i class="material-icons left">info</i></a>
-                </div>
-                <div class="col s11 m5 l5">
-                    <h5 style="text-align: left">Valeur monétaire des gains ($)</h5>
-                </div>
-
-                <div class="col s12 m6 l6">
-                    <h5 style="font-weight: bold;" id="valeur_monetaire_gain"></h5>
-                </div>
-            </div>
-
-            <div class="row s12 m12 l12">
-                <div class="col s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Les frais d’utilisation de la plateforme inclus l’hébergement, le support technique et le cout d’utilisation par rendez-vous."><i class="material-icons left">info</i></a>
-                </div>
-                <div class="col s12 m5 l5">
-                    <h5 style="text-align: left">Frais d’utilisation de la plateforme</h5>
-                </div>
-
-                <div class="col s12 m6 l6">
-                    <h5 style="font-weight: bold; " id="frais_utilisation_plateforme"></h5>
-                </div>
-            </div>
-
-            <div class="row s12 m12 l12">
-                <div class="col s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Le gains d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquitté"><i class="material-icons left">info</i></a>
-                </div>
-                <div class="col s12 m5 l5">
-                    <h5 style="text-align: left">Gain d’efficience par rendez-vous
-                    </h5>
-                </div>
-
-                <div class="col s12 m6 l6">
-                    <h5 style="font-weight: bold;" id="gain_rdv_unitaire"></h5>
-                </div>
-            </div>
-            <div class="row s12 m12 l12">
-                <div class="col s1 m1 l1">
-                    <a class="tooltipped" data-position="bottom" data-tooltip="Le gains d’efficience par rendez-vous représente le bénéfice moyen par rendez-vous une fois les frais d’utilisation acquitté"><i class="material-icons left">info</i></a>
-                </div>
-                <div class="col s12 m5 l5">
-                    <h5 style="text-align: left">Retour sur l’investissement (ROI)</h5>
-                </div>
-
-                <div class="col s12 m6 l6">
-                    <h5 style="font-weight: bold;" id="roi"></h5>
-                </div>
-            </div>
-
-        </div>-->
-</div>
+</div>-->
 
 
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
